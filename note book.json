@@ -1,0 +1,146 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Analysis Plan: Boston Housing Dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Project Overview\n",
+    "This notebook outlines the plan to analyze the Boston Housing dataset and provide insights to upper management. We will address four key questions using appropriate statistical tests and visualizations."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Task 1: Descriptive Statistics and Data Exploration\n",
+    "Before addressing the specific questions, we will perform a preliminary analysis to understand the dataset's characteristics.\n",
+    "\n",
+    "**Actions:**\n",
+    "1.  **Load the Dataset:** Load the Boston Housing data into a pandas DataFrame.\n",
+    "2.  **Descriptive Statistics:** Generate summary statistics for all variables using `.describe()`. This will give us the mean, median, standard deviation, and quartiles for each feature.\n",
+    "3.  **Visualizations:**\n",
+    "    * **Histograms:** Create histograms for key continuous variables like Median Value (MEDV), Nitric Oxide (NOX), and Distance to Employment Centres (DIS) to understand their distributions.\n",
+    "    * **Box Plots:** Generate a box plot for Median Value (MEDV) to identify the median, interquartile range, and potential outliers."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Question 1: Is there a significant difference in the median value of houses bounded by the Charles River or not?\n",
+    "\n",
+    "**Analysis Approach:**\n",
+    "This question compares the median house values (a continuous variable) between two distinct groups (bounded by the river vs. not bounded). This is a classic case for comparing two independent means.\n",
+    "\n",
+    "* **Statistical Test:** **Independent Samples T-test**. This test will determine if the difference in the mean of the median values between the two groups is statistically significant.\n",
+    "    * **Null Hypothesis (H₀):** There is no significant difference in the mean median value of houses bounded by the Charles River and those that are not.\n",
+    "    * **Alternative Hypothesis (H₁):** There is a significant difference in the mean median value.\n",
+    "\n",
+    "* **Visualization:** **Box Plot**. A side-by-side box plot is perfect for this. It will visually compare the distribution, median, and spread of house values for both groups (Charles River vs. No Charles River)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Question 2: Is there a difference in median values of houses for each proportion of owner-occupied units built before 1940?\n",
+    "\n",
+    "**Analysis Approach:**\n",
+    "The 'proportion of owner-occupied units built before 1940' (AGE) is a continuous variable. To make it useful for group comparison, we should discretize it into categories (e.g., 'Low', 'Medium', 'High' proportion of old houses). This turns the question into a comparison of a continuous variable (MEDV) across three or more groups.\n",
+    "\n",
+    "* **Statistical Test:** **ANOVA (Analysis of Variance)**. ANOVA is used to determine if there are any statistically significant differences between the means of three or more independent groups.\n",
+    "    * **Null Hypothesis (H₀):** There is no significant difference in the mean median house values across the different age proportion categories.\n",
+    "    * **Alternative Hypothesis (H₁):** At least one age proportion category has a different mean median house value.\n",
+    "\n",
+    "* **Visualization:** **Bar Chart or Box Plots**. A bar chart showing the mean MEDV for each age category with error bars would be effective. Alternatively, side-by-side box plots for each category can provide a more detailed view of the distributions."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Question 3: Can we conclude that there is no relationship between Nitric oxide concentrations and the proportion of non-retail business acres per town?\n",
+    "\n",
+    "**Analysis Approach:**\n",
+    "This question asks about the relationship between two continuous variables: Nitric Oxide concentrations (NOX) and the proportion of non-retail business acres (INDUS).\n",
+    "\n",
+    "* **Statistical Test:** **Pearson Correlation**. This will measure the strength and direction of the linear relationship between NOX and INDUS. We will calculate the correlation coefficient (r) and its corresponding p-value.\n",
+    "    * **Null Hypothesis (H₀):** There is no linear relationship between Nitric Oxide concentrations and the proportion of non-retail business acres (i.e., the correlation coefficient is zero).\n",
+    "    * **Alternative Hypothesis (H₁):** There is a linear relationship.\n",
+    "\n",
+    "* **Visualization:** **Scatter Plot**. A scatter plot is the ideal way to visualize the relationship between two continuous variables. We will plot NOX on one axis and INDUS on the other to see if a pattern emerges (e.g., linear, curved, or no pattern)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Question 4: What is the impact of an additional weighted distance to the five Boston employment centres on the median value of owner-occupied homes?\n",
+    "\n",
+    "**Analysis Approach:**\n",
+    "This question aims to quantify the relationship between a predictor variable (weighted distance to employment centers, DIS) and a response variable (median value of homes, MEDV). This is a classic regression problem.\n",
+    "\n",
+    "* **Statistical Test:** **Simple Linear Regression**. We will fit a regression model with MEDV as the dependent variable and DIS as the independent variable. The key output will be the regression coefficient for DIS.\n",
+    "    * **Interpretation:** The coefficient will tell us the estimated change in the median value of homes (in thousands of dollars) for each one-unit increase in the weighted distance to employment centers.\n",
+    "\n",
+    "* **Visualization:** **Scatter Plot with a Regression Line**. This will visually show the relationship between distance and house value, and the fitted line will represent the model's prediction of their linear relationship."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
